@@ -9,5 +9,5 @@ public interface InterfacePlaylistLagu {
     public void createPlaylist(ModelPlaylist playlist);
     public void deletePlaylist(int idPlaylist);
     public void updatePlaylist(ModelPlaylist playlist);
-    public List<ModelPlaylist> getAllPlaylists();
+    public List<ModelPlaylist> getAllPlaylists(int idUser);
 }

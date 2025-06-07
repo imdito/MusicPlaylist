@@ -21,17 +21,21 @@ public class ControllerRegister {
 
     // Add methods for registration logic here
     public void insertAkun() {
+        try {
+            ModelAkun akun = new ModelAkun();
+            akun.setUsername(registerPage.getUsername());
+            akun.setPassword(registerPage.getPassword());
+            if ("".equals(registerPage.getUsername()) || "".equals(registerPage.getPassword())) {
+                System.out.println("Username atau password tidak boleh kosong");
+                return;
+            }
 
-        ModelAkun akun = new ModelAkun();
-        akun.setUsername(registerPage.getUsername());
-        akun.setPassword(registerPage.getPassword());
-        if ("".equals(registerPage.getUsername()) || "".equals(registerPage.getPassword())) {
-            System.out.println("Username atau password tidak boleh kosong");
-            return;
+            // Simpan akun ke database
+            daoAkun.insertAkun(akun);
+        }catch (Exception e){
+            return ;
         }
 
-        // Simpan akun ke database
-        daoAkun.insertAkun(akun);
 
     }
 }

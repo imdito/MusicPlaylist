@@ -28,6 +28,7 @@ public class HalamanUtama extends JFrame {
 
     public HalamanUtama(ModelAkun akun) {
         this.akun = akun;
+        System.out.println("ID Akun: " + akun.getIdAkun());
         setTitle("Halaman Utama");
         setContentPane(MainPanel);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -37,7 +38,7 @@ public class HalamanUtama extends JFrame {
 
         controller = new ControllerHalamanUtama(this);
         controller.tampilkanDaftarLagu();
-        controller.tampilkanDaftarPlaylist();
+        controller.tampilkanDaftarPlaylist(akun.getIdAkun());
         // Initialize components and add action listeners if needed
         aturPlaylistButton.addActionListener(e -> {
             // Logic for managing playlists

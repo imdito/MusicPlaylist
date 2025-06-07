@@ -22,10 +22,11 @@ public class HalamanPlaylist extends JFrame {
     ControllerHalamanPlaylist controller;
     String kolomPlaylist[] = {"ID", "Nama Playlist"};
     Integer barisTerpilih;
-
+    ModelAkun akun = new ModelAkun();
 
     public HalamanPlaylist(ModelAkun akun) {
-
+        this.akun = akun;
+        System.out.println("ID Akun: " + akun.getIdAkun());
         setTitle("Halaman Playlist");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(800, 600);
@@ -33,7 +34,7 @@ public class HalamanPlaylist extends JFrame {
         setVisible(true);
         setContentPane(MainPanel);
 
-        controller = new ControllerHalamanPlaylist(this);
+        controller = new ControllerHalamanPlaylist(this, akun.getIdAkun());
         controller.tampilkanDaftarPlaylist();
 
         backButton.addActionListener(new ActionListener() {

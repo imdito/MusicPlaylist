@@ -36,8 +36,8 @@ public class ControllerHalamanUtama {
         halamanUtama.getTableLagu().setModel(modelTableLagu);
     }
 
-    public void tampilkanDaftarPlaylist() {
-        daftarPlaylist = daoPlaylistLagu.getAllPlaylists();
+    public void tampilkanDaftarPlaylist(int idUser) {
+        daftarPlaylist = daoPlaylistLagu.getAllPlaylists(idUser);
         ModelTablePlaylist modelTablePlaylist = new ModelTablePlaylist(daftarPlaylist);
         halamanUtama.getTablePlaylist().setModel(modelTablePlaylist);
     }

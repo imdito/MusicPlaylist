@@ -13,9 +13,10 @@ public class DAOPlaylist implements InterfacePlaylistLagu{
     public void createPlaylist(ModelPlaylist playlist) {
         try {
             System.out.println("Adding Playlist: " + playlist.getNamePlaylist() + " for User ID: " + playlist.getIdUser());
-            String query = "INSERT INTO `playlist` (`nama`) VALUES (?);";
+            String query = "INSERT INTO `playlist` (`nama`, `id_user`) VALUES (?, ?);";
             PreparedStatement statement = ConnectDatabase.Connect().prepareStatement(query);
             statement.setString(1, playlist.getNamePlaylist());
+            statement.setInt(2, playlist.getIdUser());
 
             statement.executeUpdate();
             statement.close();
@@ -53,11 +54,12 @@ public class DAOPlaylist implements InterfacePlaylistLagu{
     }
 
     @Override
-    public List<ModelPlaylist> getAllPlaylists() {
+    public List<ModelPlaylist> getAllPlaylists(int idUser) {
         List<ModelPlaylist> listplaylists = new ArrayList<>();
         try {
-            String query = "SELECT * FROM `playlist` ;";
+            String query = "SELECT * FROM `playlist` WHERE `id_user` = ?;";
             PreparedStatement statement = ConnectDatabase.Connect().prepareStatement(query);
+            statement.setInt(1, idUser);
              // Assuming you want to filter by user ID
             var resultSet = statement.executeQuery();
 

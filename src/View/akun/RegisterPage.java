@@ -121,7 +121,6 @@ public class RegisterPage extends JFrame {
                     akun.setUsername(inputUsername.getText());
                     akun.setPassword(new String(inputPassword.getPassword()));
                     controller.insertAkun();
-                    JOptionPane.showMessageDialog(null, "Akun berhasil dibuat");
                 }
                 dispose();
                 new LoginPage();

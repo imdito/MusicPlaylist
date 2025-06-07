@@ -17,15 +17,16 @@ public class ControllerHalamanPlaylist {
     List<ModelPlaylist> daftarPlaylists;
     InterfacePlaylistLagu  daoPlaylist;
     HalamanPlaylist halamanPlaylist;
+    int idUser;
 
-    public ControllerHalamanPlaylist(HalamanPlaylist halamanPlaylist) {
+    public ControllerHalamanPlaylist(HalamanPlaylist halamanPlaylist, int idUser) {
         this.halamanPlaylist = halamanPlaylist;
         this.daoPlaylist = new DAOPlaylist();
-
+        this.idUser = idUser;
     }
 
     public void tampilkanDaftarPlaylist() {
-        daftarPlaylists = daoPlaylist.getAllPlaylists();
+        daftarPlaylists = daoPlaylist.getAllPlaylists(idUser);
         ModelTablePlaylist modelTablePlaylist = new ModelTablePlaylist(daftarPlaylists);
         halamanPlaylist.getTablePlaylist().setModel(modelTablePlaylist);
     }
@@ -89,7 +90,7 @@ public class ControllerHalamanPlaylist {
 
     public void tampilkanPlaylist(){
 
-        daftarPlaylists = daoPlaylist.getAllPlaylists();
+        daftarPlaylists = daoPlaylist.getAllPlaylists(idUser);
         ModelTablePlaylist modelTablePlaylist = new ModelTablePlaylist(daftarPlaylists);
         halamanPlaylist.getTablePlaylist().setModel(modelTablePlaylist);
 

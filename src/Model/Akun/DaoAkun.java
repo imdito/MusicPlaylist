@@ -3,7 +3,7 @@ package Model.Akun;
 import Model.ConnectDatabase;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-
+import javax.swing.JOptionPane;
 
 public class DaoAkun implements InterfaceDAOAkun {
 
@@ -20,8 +20,10 @@ public class DaoAkun implements InterfaceDAOAkun {
 
                 statement.executeUpdate();
                 statement.close();
+                JOptionPane.showMessageDialog(null, "Akun berhasil di Buat", "Success", JOptionPane.INFORMATION_MESSAGE);
        } catch (Exception e) {
               System.out.println("Error Insert Akun: " + e.getMessage());
+              JOptionPane.showMessageDialog(null, "Error Insert Akun: Username " + akun.getUsername() + " sudah digunakan!" , "Error", JOptionPane.ERROR_MESSAGE);
        }
     }
 
@@ -36,13 +38,12 @@ public class DaoAkun implements InterfaceDAOAkun {
             statement.setString(2, akun.getPassword());
             statement.execute();
             ResultSet resultSet = statement.executeQuery();
-            System.out.println(resultSet.getString("username"));
-
             if (resultSet.next()) {
                 System.out.println("Akun ditemukan");
                 akun.setUsername(resultSet.getString("username"));
                 akun.setPassword(resultSet.getString("password"));
                 akun.setIdAkun(resultSet.getInt("id")); ;
+                System.out.println("Akun ID: " + akun.getIdAkun());
                 resultSet.close();
                 return true;
             }            // Execute query and handle results as needed
@@ -55,10 +56,13 @@ public class DaoAkun implements InterfaceDAOAkun {
                 System.out.println("Error read Akun: " + e.getMessage());
                 return false;
 
+            }else{
+                System.out.println("Error read Akun: " + e.getMessage());
+                return false;
             }
 
         }
-        return true;
+        return false;
     }
 
 }
