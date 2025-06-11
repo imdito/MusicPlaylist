@@ -8,6 +8,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import Model.Akun.ModelAkun;
+import Utils.ImageTableCellRenderer;
+
+import javax.swing.table.TableColumn;
+
 public class HalamanLagu extends JFrame {
     Integer barisTerpilih;
     private JPanel MainPanel;
@@ -24,7 +28,7 @@ public class HalamanLagu extends JFrame {
     private JButton clearButton;
     private JButton backButton;
     ControllerHalamanLagu controllerHalamanLagu;
-    String kolomLagu[] = {"ID","Judul Lagu", "Penyanyi", "Album", "Genre", "Gambar", "Link Lagu"};
+    public String kolomLagu[] = {"ID","Judul Lagu", "Penyanyi", "Album", "Genre", "Gambar", "Link Lagu"};
 
 
     public HalamanLagu(ModelAkun akun) {
@@ -37,6 +41,9 @@ public class HalamanLagu extends JFrame {
 
         controllerHalamanLagu = new ControllerHalamanLagu(this);
         controllerHalamanLagu.tampilkanDaftarLagu();
+        TableColumn imageColumn = tableLagu.getColumnModel().getColumn(5);
+        tableLagu.setRowHeight(80);
+
         // Initialize components and add action listeners if needed
         updateLaguButton.addActionListener(e -> {
 

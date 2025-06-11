@@ -4,10 +4,11 @@ import Model.Lagu.DAOLagu;
 import Model.Lagu.InterfaceDAOLagu;
 import Model.Lagu.ModelLagu;
 import Model.Lagu.ModelTableLagu;
+import Utils.ImageTableCellRenderer;
 import View.HalamanLagu;
-import View.HalamanUtama;
-
+import javax.swing.table.DefaultTableModel;
 import javax.swing.*;
+import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.util.List;
 
@@ -27,7 +28,12 @@ public class ControllerHalamanLagu {
     public void tampilkanDaftarLagu() {
         daftarLagu = daoLagu.getAllLagu();
         ModelTableLagu modelTableLagu = new ModelTableLagu(daftarLagu);
+        DefaultTableModel model = new DefaultTableModel();
+        model.setColumnIdentifiers(halamanLagu.kolomLagu);
         halamanLagu.getAllLagu().setModel(modelTableLagu);
+        TableColumn imageColumn = halamanLagu.getAllLagu().getColumnModel().getColumn(5);
+        imageColumn.setCellRenderer(new ImageTableCellRenderer());
+
     }
 
     public void inputLagu() {

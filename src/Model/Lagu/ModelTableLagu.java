@@ -24,7 +24,13 @@ public class ModelTableLagu extends AbstractTableModel{
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-
+        if (columnIndex == 5) {
+            // Kita cek apa isi URL sebelum dikembalikan
+            String url = lgu.get(rowIndex).getGambar();
+            System.out.println(
+                    "DEBUG: getValueAt [Baris: " + rowIndex + ", Kolom: 5] -> URL: '" + url + "'"
+            );
+        }
         switch (columnIndex) {
             case 0:
                 return lgu.get(rowIndex).getIdLagu();
