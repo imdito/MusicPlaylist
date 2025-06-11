@@ -36,7 +36,8 @@ public class ControllerHalamanPlaylist {
 
             ModelPlaylist plst = new ModelPlaylist();
             plst.setNamePlaylist(halamanPlaylist.getNamafield());
-
+            plst.setIdUser(idUser);
+            System.out.println("ID User: " + plst.getIdUser());
             if ("".equals(halamanPlaylist.getNamafield())) {
                 throw new Exception("Nama Playlist tidak boleh kosong!");
 

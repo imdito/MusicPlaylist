@@ -36,7 +36,7 @@ public class HalamanPlaylist extends JFrame {
 
         controller = new ControllerHalamanPlaylist(this, akun.getIdAkun());
         controller.tampilkanDaftarPlaylist();
-
+        System.out.println("ID Akun: " + akun.getIdAkun());
         backButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -58,6 +58,7 @@ public class HalamanPlaylist extends JFrame {
         Insert.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 controller.tambahPlaylist();
             }
         });

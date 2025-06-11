@@ -11,8 +11,10 @@ public class DAOPlaylist implements InterfacePlaylistLagu{
 
     @Override
     public void createPlaylist(ModelPlaylist playlist) {
+        System.out.println("Creating Playlist: " + playlist.getNamePlaylist() + " for User ID: " + playlist.getIdUser());
         try {
             System.out.println("Adding Playlist: " + playlist.getNamePlaylist() + " for User ID: " + playlist.getIdUser());
+
             String query = "INSERT INTO `playlist` (`nama`, `id_user`) VALUES (?, ?);";
             PreparedStatement statement = ConnectDatabase.Connect().prepareStatement(query);
             statement.setString(1, playlist.getNamePlaylist());
@@ -21,7 +23,7 @@ public class DAOPlaylist implements InterfacePlaylistLagu{
             statement.executeUpdate();
             statement.close();
         } catch (SQLException e) {
-            System.out.println("Error Add Playlist: " + e.getMessage());
+            System.out.println("Error Addd Playlist: " + e.getMessage());
         }
     }
 
